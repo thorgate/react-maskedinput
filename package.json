@@ -1,5 +1,5 @@
 {
-  "name": "react-maskedinput",
+  "name": "react-maskedinput-legacy",
   "description": "Masked <input/> React component",
   "version": "3.0.0",
   "main": "./lib/index.js",
