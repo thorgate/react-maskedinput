@@ -16,6 +16,14 @@ function isRedo(e) {
   return (e.ctrlKey || e.metaKey) && e.keyCode === (e.shiftKey ? KEYCODE_Z : KEYCODE_Y)
 }
 
+function getDOMNode(node) {
+  if (React.version && (React.version + '').startsWith('0.13')) {
+    return React.findDOMNode(node);
+  } else {
+    return node;
+  }
+}
+
 var MaskedInput = React.createClass({
   propTypes: {
     mask: React.PropTypes.string.isRequired,
@@ -153,7 +161,7 @@ var MaskedInput = React.createClass({
     var {mask, formatCharacters, size, placeholder, ...props} = this.props
     var patternLength = this.mask.pattern.length
     return <input {...props}
-      ref={r => this.input = r }
+      ref={r => this.input = getDOMNode(r) }
       maxLength={patternLength}
       onChange={this._onChange}
       onKeyDown={this._onKeyDown}
